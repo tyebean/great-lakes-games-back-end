@@ -4,7 +4,7 @@ const router = Router()
 
 /*---------- Public Routes ----------*/
 
-router.get('/', gamesCtrl.index)
+router.get('/games', gamesCtrl.index)
 
 /*---------- Protected Routes ----------*/
 

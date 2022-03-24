@@ -6,7 +6,7 @@ https://www.youtube.com/watch?v=6RVOf171lZc&ab_channel=BenManley
 
 
 game, review, comment
-1 stub up models (waiting to review with peers)
+1 stub up models (waiting to review with peers) 
 2 make controllers 
 3 make routes + import routes in server.js
 
