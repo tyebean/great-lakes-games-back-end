@@ -82,14 +82,14 @@ function deleteComment(req, res){
   })
 }
 
-function showComment (req, res){
-  Review.findById(req.params.id)
-  .then(review => res.json(review))
-  .catch(err => {
-    console.log(err)
-    res.status(500).json(err)
-  })
-}
+// function showComment (req, res){
+//   Review.findById(req.params.id)
+//   .then(review => res.json(review))
+//   .catch(err => {
+//     console.log(err)
+//     res.status(500).json(err)
+//   })
+// }
 
 export {
   index,
@@ -99,7 +99,7 @@ export {
   update,
   indexComment,
   createComment,
-  showComment,
+  // showComment,
   deleteComment
 }
 
