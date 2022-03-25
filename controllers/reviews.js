@@ -10,19 +10,66 @@ function index(res, req) {
 }
 
 function create(req, res){
-  console.log("");
+  req.body.author = req.user.profile
+  Review.create(req.body)
+  .then(review => {
+    review.populate('author')
+    .then(populatedReview => {
+      res.json(populatedReview)
+    })
+  })
+  .catch(err => res.json(err))
 }
 
 function deleteReview(req, res){
-  console.log("");
+  Review.findByIdAndDelete(req.params.id)
+  .then(review => res.json(review))
+  .catch(err => res.json(err))
 }
 
 function show(req, res){
-  console.log("");
+  Review.findById(req.params.id)
+  .then(review => res.json(review))
+  .catch(err => res.json(err))
 }
 
 function update(req, res){
-  console.log("");
+  Review.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  .then(review => res.json(review))
+  .catch(err => res.json(err))
+}
+
+function indexComment (res, req) {
+  Comment.find({})
+  .then(comments => res.json(comments))
+  .catch(err => {
+    console.log(err)
+    res.status(500).json(err)
+  })
+}
+
+function createComment (req, res){
+  req.body.author = req.user.profile
+  Comment.create(req.body)
+  .then(comment => {
+    comment.populate('author')
+    .then(populatedComment => {
+      res.json(populatedComment)
+    })
+  })
+  .catch(err => res.json(err))
+}
+
+function deleteComment(req, res){
+  Comment.findByIdAndDelete(req.params.id)
+  .then(review => res.json(review))
+  .catch(err => res.json(err))
+}
+
+function showComment (req, res){
+  Review.findById(req.params.id)
+  .then(review => res.json(review))
+  .catch(err => res.json(err))
 }
 
 export {
