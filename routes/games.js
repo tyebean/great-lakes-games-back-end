@@ -4,6 +4,7 @@ const router = Router()
 
 /*---------- Public Routes ----------*/
 
+// index, create, update, delete, show
 router.get('/games', gamesCtrl.index)
 
 /*---------- Protected Routes ----------*/
