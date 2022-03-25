@@ -3,9 +3,8 @@ import * as gamesCtrl from '../controllers/games.js'
 const router = Router()
 
 /*---------- Public Routes ----------*/
-
-// index, create, update, delete, show
-router.get('/games', gamesCtrl.index)
+router.get('/', gamesCtrl.index) 
+router.get('/:id', gamesCtrl.show)
 
 /*---------- Protected Routes ----------*/
 

@@ -2,7 +2,16 @@ import { Game } from "../models/game.js";
 
 function index(res, req) {
   Game.find({})
-  .then(games => res.json(games))
+  .then(game => res.json(game))
+  .catch(err => {
+    console.log(err)
+    res.status(500).json(err)
+  })
+}
+
+function show(req, res) {
+  Game.findById(req.params.id)
+  .then(game => res.json(game))
   .catch(err => {
     console.log(err)
     res.status(500).json(err)
@@ -11,5 +20,5 @@ function index(res, req) {
 
 export {
   index,
+  show,
 }
-
