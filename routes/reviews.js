@@ -9,7 +9,6 @@ router.get('/:id', reviewsCtrl.show)
 
 router.get('/', reviewsCtrl.indexComment) 
 
-
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.post('/', checkAuth, reviewsCtrl.create)
