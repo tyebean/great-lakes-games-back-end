@@ -4,10 +4,10 @@ import { decodeUserFromToken, checkAuth } from '../middleware/auth.js'
 const router = Router()
 
 /*---------- Public Routes ----------*/
-router.get('/', reviewsCtrl.index) 
-router.get('/:id', reviewsCtrl.show)
+router.get('/reviews', reviewsCtrl.index) 
+router.get('/reviews/:id', reviewsCtrl.show)
 
-router.get('/', reviewsCtrl.indexComment) 
+router.get('/reviews/comments', reviewsCtrl.indexComment) 
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
@@ -15,8 +15,8 @@ router.post('/', checkAuth, reviewsCtrl.create)
 router.put('/:id', checkAuth, reviewsCtrl.update)
 router.delete('/:id', checkAuth, reviewsCtrl.delete)
 
-router.post('/', checkAuth, reviewsCtrl.createComment)
-router.delete('/:id', checkAuth, reviewsCtrl.deleteComment)
+router.post('/comments', checkAuth, reviewsCtrl.createComment)
+router.delete('/comments/:id', checkAuth, reviewsCtrl.deleteComment)
 
 
 export { router } 
