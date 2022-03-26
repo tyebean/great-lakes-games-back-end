@@ -13,10 +13,17 @@ function index(req, res) {
 }
 
 function getRawgGames(req, res) {
-  axios.get(`${rawgUrl}?key=${process.env.RAWG_KEY}`).then((response) => {
-    console.log(response.data.results);
-    res.status(200).json(response.data.results);
-  });
+  if (req.query.id) {
+    console.log(req.query.id)
+    axios.get(`${rawgUrl}/${req.query.id}?key=${process.env.RAWG_KEY}`).then((response) => {
+      console.log(response.data)
+      res.status(200).json(response.data);
+    });
+  } else {
+    axios.get(`${rawgUrl}?key=${process.env.RAWG_KEY}`).then((response) => {
+      res.status(200).json(response.data.results);
+    });
+  }
 }
 
 function show(req, res) {
