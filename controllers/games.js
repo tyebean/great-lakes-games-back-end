@@ -14,9 +14,9 @@ function index(req, res) {
 
 function getRawgGames(req, res) {
   if (req.query.id) {
-    console.log(req.query.id)
+    // console.log(req.query.id)
     axios.get(`${rawgUrl}/${req.query.id}?key=${process.env.RAWG_KEY}`).then((response) => {
-      console.log(response.data)
+      // console.log(response.data)
       res.status(200).json(response.data);
     });
   } else {
