@@ -9,7 +9,7 @@ const commentSchema = new mongoose.Schema({
 
 const reviewSchema = new mongoose.Schema({
   text: String,
-  date: Date.now(),
+  date: Date,
   author: {type: mongoose.Schema.Types.ObjectId, ref: "Profile"},
   gameId: Number,
   comments: [commentSchema],
