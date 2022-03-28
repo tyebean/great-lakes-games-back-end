@@ -30,6 +30,30 @@ function getRawgGames(req, res) {
   }
 }
 
+function create(req, res) {
+  // try {
+  //   Game.find(Game.apiId);
+  // } catch {
+  //   Game.create(req.body)
+  //   .then(game => {
+  //     res.status(201.json())
+  //   })
+  // }
+  console.log(req.body.apiId);
+  if (req.body.apiId === "undefined") {
+    Game.create(req.body)
+      .then((game) => {
+        game.populate("review").then((populatedGame) => {
+          res.json(populatedGame);
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  }
+}
+
 function show(req, res) {
   Game.findById(req.params.id)
     .then((game) => res.json(game))
