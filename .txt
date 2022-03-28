@@ -1,0 +1,23 @@
+
+a user clicks the 'add review' button
+that button fires off a function
+this function calls uppon a service
+that service sends a request to the server
+a route on the server catches the request 
+that route calls uppon a controller function
+
+controller function:
+checks our DB for an existing game with this RAWG API id if the contrller cant find a game with that RAWG API id,
+it will create a new game in our DB
+
+once a game exists in our DB, the controller function can create a review 
+and associate it with that game 
+
+questions
+-what data do we need to send back to the controller function when creating a review?
+-what should the controller function return?
+-where should our first function be? (<GameDetails />)
+
+-Currently, gamedetails is holding state with info from RAWG.
+  -what additional pieces of state do we need to use along side that?
+
