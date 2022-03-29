@@ -11,17 +11,10 @@ function index(res, req) {
 }
 
 async function create(req, res) {
-  // console.log("reqboddddy ", req.body.id);
-  // console.log("parrrams ", req.params);
-  // console.log("paramms id ", req.params.id);
-
-  // console.log("game find here ", Game.find({ apiId: req.body.id }));
   const existingGame = await Game.findOne({ apiId: req.body.apiId });
   if (!existingGame) {
     console.log("if if if if block running");
-
     const newGame = await Game.create(req.body);
-
     const review = await Review.create(req.body);
     newGame.reviews.push(review._id);
     await newGame.save();
@@ -32,16 +25,6 @@ async function create(req, res) {
     existingGame.reviews.push(review._id);
     await existingGame.save();
     return res.status(201).json(review);
-    // Review.create(req.body)
-    //   .then(review => {
-    //     review.populate("author").then(populatedReview => {
-    //       res.json(populatedReview);
-    //     });
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //     res.status(500).json(err);
-    //   });
   }
 }
 
