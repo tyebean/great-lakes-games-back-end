@@ -3,10 +3,13 @@ import { Review } from "../models/review.js";
 
 function index(res, req) {
   Review.find({})
-    .then(review => res.json(review))
+    .then(review => {
+      console.log("success", review);
+      return res.json(review)}) 
+    
     .catch(err => {
       console.log(err);
-      res.status(500).json(err);
+      // return res.status(500).json(err);
     });
 }
 
