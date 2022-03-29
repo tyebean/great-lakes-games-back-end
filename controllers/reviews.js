@@ -10,35 +10,39 @@ function index(res, req) {
     });
 }
 
-function create(req, res) {
+async function create(req, res) {
   // console.log("reqboddddy ", req.body.id);
   // console.log("parrrams ", req.params);
   // console.log("paramms id ", req.params.id);
 
   // console.log("game find here ", Game.find({ apiId: req.body.id }));
-  if (Game.find(!{ apiId: req.body.id })) {
-    Game.create(req.body)
-      .then(game => {
-        game.populate("reviews").then(populatedGame => {
-          res.status(201).json(populatedGame);
-        });
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  }
+  const existingGame = await Game.findOne({ apiId: req.body.apiId });
+  if (!existingGame) {
+    console.log("if if if if block running");
 
-  Review.create(req.body)
-    .then(review => {
-      review.populate("author").then(populatedReview => {
-        res.json(populatedReview);
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+    const newGame = await Game.create(req.body);
+
+    const review = await Review.create(req.body);
+    newGame.reviews.push(review._id);
+    await newGame.save();
+    return res.status(201).json(review);
+  } else {
+    console.log("else block running");
+    const review = await Review.create(req.body);
+    existingGame.reviews.push(review._id);
+    await existingGame.save();
+    return res.status(201).json(review);
+    // Review.create(req.body)
+    //   .then(review => {
+    //     review.populate("author").then(populatedReview => {
+    //       res.json(populatedReview);
+    //     });
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //     res.status(500).json(err);
+    //   });
+  }
 }
 
 function deleteReview(req, res) {
