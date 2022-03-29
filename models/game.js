@@ -1,13 +1,16 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
-const gameSchema = new mongoose.Schema({
-  apiId: Number,
-  image: String,
-  reviews: [{type: mongoose.Schema.Types.ObjectId, ref: "Review"}],
-},{
+const gameSchema = new mongoose.Schema(
+  {
+    apiId: Number,
+    image: String,
+    reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
+  },
+  {
     timestamps: true,
-})
+  }
+);
 
-const Game = mongoose.model('Game', gameSchema)
+const Game = mongoose.model("Game", gameSchema);
 
-export { Game } 
+export { Game };
