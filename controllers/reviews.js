@@ -9,7 +9,6 @@ function index(res, req) {
     
     .catch(err => {
       console.log(err);
-      // return res.status(500).json(err);
     });
 }
 
@@ -40,14 +39,29 @@ function deleteReview(req, res) {
     });
 }
 
-function show(req, res) {
-  Review.findById(req.params.id)
-    .then(review => res.json(review))
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-}
+// function show(req, res) {
+//   Review.findById(req.params.id)
+//     .then(review => res.json(review))
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// }
+
+// function show(req, res) {
+//   console.log("game find one", Game.findOne(req.params.id));
+//   Game.findOne(req.params.id)
+//   .then(game => {
+//     Game.populate("Review").then
+//     (populatedGame => {
+//       res.json(populatedGame);
+//     });
+//   })
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// }
 
 function update(req, res) {
   Review.findByIdAndUpdate(req.params.id, req.body, { new: true })
@@ -103,7 +117,7 @@ export {
   index,
   create,
   deleteReview as delete,
-  show,
+  // show,
   update,
   indexComment,
   createComment,

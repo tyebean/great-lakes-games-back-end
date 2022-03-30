@@ -1,5 +1,6 @@
 import { Game } from "../models/game.js";
 import axios from "axios";
+import { Review } from "../models/review.js";
 const rawgUrl = "https://api.rawg.io/api/games";
 // https://api.rawg.io/api/games?key=5ed4cae01e874fd5a1aa307757726f77
 
@@ -31,12 +32,22 @@ function getRawgGames(req, res) {
 }
 
 function show(req, res) {
-  Game.findById(req.params.id)
-    .then((game) => res.json(game))
+  // console.log("game find one", Game.findOne(req.params.id));
+  Game.findOne(req.params.id)
+  .then( game => {
+    Game.populate("Review").then
+    ( populatedGame => {
+      res.json(populatedGame);
+    });
+  })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
 }
 
-export { index, show, getRawgGames };
+export {
+  index,
+  show,
+  getRawgGames 
+};

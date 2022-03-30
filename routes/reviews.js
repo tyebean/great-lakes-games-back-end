@@ -5,7 +5,7 @@ const router = Router()
 
 /*---------- Public Routes ----------*/
 router.get('/', reviewsCtrl.index) 
-router.get('/:id', reviewsCtrl.show)
+// router.get('/:id', reviewsCtrl.show)
 router.post('/', reviewsCtrl.create) 
 
 router.get('/', reviewsCtrl.indexComment) 
