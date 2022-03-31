@@ -89,9 +89,7 @@ async function createComment(req, res) {
   console.log(foundReview.comments);
   foundReview.comments.push(req.body);
   await foundReview.save();
-  return res
-    .status(201)
-    .json(foundReview.comments[foundReview.comments.length - 1]);
+  return res.status(201).json(foundReview);
 }
 
 function deleteComment(req, res) {
