@@ -16,6 +16,7 @@ router.put("/:id", checkAuth, reviewsCtrl.update);
 router.delete("/:id", checkAuth, reviewsCtrl.delete);
 
 router.post("/:id/comments", reviewsCtrl.createComment);
+router.get("/:id/comments", reviewsCtrl.indexComment);
 router.delete("/:id", checkAuth, reviewsCtrl.deleteComment);
 
 export { router };

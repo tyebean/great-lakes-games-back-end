@@ -72,8 +72,12 @@ function update(req, res) {
 }
 
 function indexComment(res, req) {
-  Comment.find({})
-    .then(comment => res.json(comment))
+  Review.findOne(req.params.id)
+    .populate("comments")
+    .then(comments => {
+      console.log(comment);
+      res.json(comment);
+    })
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
