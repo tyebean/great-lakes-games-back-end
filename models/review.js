@@ -15,7 +15,6 @@ const reviewSchema = new mongoose.Schema(
     text: String,
     date: Date,
     author: { type: mongoose.Schema.Types.ObjectId, ref: "Profile" }, 
-    username: String,
     apiId: Number,
     comments: [commentSchema],
   },
