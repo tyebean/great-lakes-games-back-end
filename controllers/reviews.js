@@ -2,17 +2,21 @@ import { Game } from "../models/game.js";
 import { Review } from "../models/review.js";
 
 function index(res, req) {
-  Review.find({})
-    .then(review => {
-      console.log("success", review);
-      return res.json(review)}) 
-    
-    .catch(err => {
-      console.log(err);
-    });
+  Review.find({}) 
+  .then(review => {
+    res.json(review)
+  })
+  .catch(err => {
+    res.json(err)
+  })
 }
+// todo: read auth puppies lectures
+// todo: reference puppies create function like 16
+// find 'author' and associate it with profile
+
 
 async function create(req, res) {
+  console.log("Req User", req.user);
   const existingGame = await Game.findOne({ apiId: req.body.apiId });
   if (!existingGame) {
     console.log("if if if if block running");

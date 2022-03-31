@@ -32,12 +32,13 @@ function getRawgGames(req, res) {
 }
 
 function show(req, res) {
-  // Game.findOne({ apiId: req.body.apiId })
-  // console.log("game find one", Game.findOne(req.params.id));
-  Game.findOne({ apiId: req.params.id })
-    .populate("reviews")
+  Game.findOne({ apiId: req.params.id }) 
+    .populate({
+      path: 'reviews',
+      populate: { path: 'author'}
+    })
     .then(game => {
-      console.log(game);
+      console.log("This is game", game);
       res.json(game);
     })
     .catch(err => {

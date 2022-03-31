@@ -11,10 +11,11 @@ const commentSchema = new mongoose.Schema(
 );
 
 const reviewSchema = new mongoose.Schema(
-  {
+  { 
     text: String,
     date: Date,
-    author: { type: mongoose.Schema.Types.ObjectId, ref: "Profile" },
+    author: { type: mongoose.Schema.Types.ObjectId, ref: "Profile" }, 
+    username: String,
     apiId: Number,
     comments: [commentSchema],
   },
@@ -24,5 +25,4 @@ const reviewSchema = new mongoose.Schema(
 );
 
 const Review = mongoose.model("Review", reviewSchema);
-
 export { Review };
