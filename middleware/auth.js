@@ -4,7 +4,7 @@ const SECRET = process.env.SECRET
 
 const decodeUserFromToken = (req, res, next) => {
   let token = req.get('Authorization') || req.query.token || req.body.token
-  console.log("token", token);
+  console.log("token !!!!!! ", token);
   if (token) {
     token = token.replace('Bearer ', '')
     jwt.verify(token, SECRET, (err, decoded) => {
