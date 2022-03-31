@@ -1,22 +1,22 @@
 import { Router } from "express";
-import * as reviewsCtrl from '../controllers/reviews.js'
-import { decodeUserFromToken, checkAuth } from '../middleware/auth.js'
+import * as reviewsCtrl from "../controllers/reviews.js";
+import { decodeUserFromToken, checkAuth } from "../middleware/auth.js";
 
-const router = Router()
+const router = Router();
 
 /*---------- Public Routes ----------*/
-router.get('/', reviewsCtrl.index) 
-// router.get('/', reviewsCtrl.indexComment) 
-
+router.get("/", reviewsCtrl.index);
+// router.get('/', reviewsCtrl.indexComment)
 
 /*---------- Protected Routes ----------*/
 
-router.use(decodeUserFromToken)
-router.post('/', checkAuth, reviewsCtrl.create) 
-router.put('/:id', checkAuth, reviewsCtrl.update)
-router.delete('/:id', checkAuth, reviewsCtrl.delete)
+router.use(decodeUserFromToken);
+router.post("/", checkAuth, reviewsCtrl.create);
+router.put("/:id", checkAuth, reviewsCtrl.update);
+router.delete("/:id", checkAuth, reviewsCtrl.delete);
 
-router.post('/', checkAuth, reviewsCtrl.createComment)
-router.delete('/:id', checkAuth, reviewsCtrl.deleteComment)
+router.post("/:id/comments", reviewsCtrl.createComment);
+router.get("/:id/comments", reviewsCtrl.indexComment);
+router.delete("/:id", checkAuth, reviewsCtrl.deleteComment);
 
-export { router } 
+export { router };

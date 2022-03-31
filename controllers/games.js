@@ -32,10 +32,10 @@ function getRawgGames(req, res) {
 }
 
 function show(req, res) {
-  Game.findOne({ apiId: req.params.id }) 
+  Game.findOne({ apiId: req.params.id })
     .populate({
-      path: 'reviews',
-      populate: { path: 'author'}
+      path: "reviews",
+      populate: { path: "author" },
     })
     .then(game => {
       console.log("This is game", game);
