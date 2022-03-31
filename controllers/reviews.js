@@ -4,9 +4,9 @@ import { Review } from "../models/review.js";
 function index(res, req) {
   Review.find({})
     .then(review => {
-      console.log("success", review);
-      return res.json(review)}) 
-    
+      return res.json(review);
+    })
+
     .catch(err => {
       console.log(err);
     });
@@ -15,7 +15,6 @@ function index(res, req) {
 async function create(req, res) {
   const existingGame = await Game.findOne({ apiId: req.body.apiId });
   if (!existingGame) {
-    console.log("if if if if block running");
     const newGame = await Game.create(req.body);
     const review = await Review.create(req.body);
     newGame.reviews.push(review._id);
@@ -81,18 +80,14 @@ function indexComment(res, req) {
     });
 }
 
-function createComment(req, res) {
-  req.body.author = req.user.profile;
-  Comment.create(req.body)
-    .then(comment => {
-      comment.populate("author").then(populatedComment => {
-        res.json(populatedComment);
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+async function createComment(req, res) {
+  const foundReview = await Review.findById(req.params.id);
+  console.log(foundReview.comments);
+  foundReview.comments.push(req.body);
+  await foundReview.save();
+  return res
+    .status(201)
+    .json(foundReview.comments[foundReview.comments.length - 1]);
 }
 
 function deleteComment(req, res) {

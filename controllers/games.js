@@ -37,7 +37,6 @@ function show(req, res) {
   Game.findOne({ apiId: req.params.id })
     .populate("reviews")
     .then(game => {
-      console.log(game);
       res.json(game);
     })
     .catch(err => {
