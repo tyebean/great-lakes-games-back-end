@@ -16,8 +16,9 @@ function index(res, req) {
 
 
 async function create(req, res) {
-  console.log("Req User", req.user);
   req.body.author = req.user.profile
+  console.log("Req User", req.user);
+  console.log("author", req.body.author);
   const existingGame = await Game.findOne({ apiId: req.body.apiId });
   if (!existingGame) {
     console.log("if if if if block running");
