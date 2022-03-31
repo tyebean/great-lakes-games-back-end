@@ -4,15 +4,20 @@ import { Review } from "../models/review.js";
 function index(res, req) {
   Review.find({})
     .then(review => {
-      return res.json(review);
+      res.json(review);
     })
-
     .catch(err => {
-      console.log(err);
+      res.json(err);
     });
 }
+// todo: read auth puppies lectures
+// todo: reference puppies create function like 16
+// find 'author' and associate it with profile
 
 async function create(req, res) {
+  req.body.author = req.user.profile;
+  console.log("Req User", req.user);
+  console.log("author", req.body.author);
   const existingGame = await Game.findOne({ apiId: req.body.apiId });
   if (!existingGame) {
     const newGame = await Game.create(req.body);
