@@ -3,7 +3,7 @@
  */
 
 import { app } from '../server.js'
-// import debug from 'debug'
+import debug from 'debug'
 import http from 'http'
 
 /**
@@ -84,6 +84,6 @@ function onListening() {
   const bind = typeof addr === 'string'
     ? `pipe ${addr}`
     : `port ${addr.port}`
-  // debug(`Listening on ${bind}`)
-  // console.log(`Listening on ${bind}`)
+  debug(`Listening on ${bind}`)
+  console.log(`Listening on ${bind}`)
 }
