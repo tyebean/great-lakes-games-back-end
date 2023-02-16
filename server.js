@@ -1,5 +1,5 @@
 // import 'dotenv/config.js'
-import express from 'express'
+import { express } from 'express'
 import logger from 'morgan'
 import cors from 'cors'
 import formData from 'express-form-data'
