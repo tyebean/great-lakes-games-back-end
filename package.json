@@ -14,9 +14,9 @@
     "debug": "^4.3.4",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "express-form": "^0.12.6",
+    "express-form": "^0.6.3",
     "express-form-data": "^2.0.17",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.2.8",
     "morgan": "^1.10.0"
   }
