@@ -10,6 +10,7 @@
     "express-form": "^0.12.6",
     "express-form-data": "^2.0.19",
     "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.9.2",
     "morgan": "^1.10.0"
   }
 }

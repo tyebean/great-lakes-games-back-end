@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 
+mongoose.set('strictQuery', false)
 const db = mongoose.connection
 
 mongoose.connect(process.env.DATABASE_URL)
